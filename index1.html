@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplop Interaktif</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c3e50;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .envelope {
+            width: 200px;
+            height: 100px;
+            background: #e0a96d;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .envelope::before, .envelope::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background: #d18e56;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .envelope::before {
+            top: 0;
+            transform-origin: top;
+            transform: rotateX(0deg);
+        }
+
+        .envelope::after {
+            bottom: 0;
+            transform-origin: bottom;
+            transform: rotateX(0deg);
+        }
+
+        .envelope.open::before {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope.open .content {
+            display: block;
+            animation: slideDown 0.5s forwards;
+        }
+
+        .content {
+            display: none;
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .content img {
+            width: 100%;
+            height: auto;
+        }
+
+        @keyframes slideDown {
+            from {
+                top: -150px;
+            }
+            to {
+                top: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" id="envelope">
+        <div class="content" id="content">
+            <img src="your-image-url.jpg" alt="Selamat Berpuasa">
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const content = document.getElementById('content');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
