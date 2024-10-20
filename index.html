@@ -8,43 +8,49 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #2c3e50;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #b4e1dd, #9edcc1);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #fff;
+            color: #333;
         }
 
         .envelope {
             width: 200px;
-            height: 100px;
-            background: #e0a96d;
+            height: 130px;
+            background: #f1c27d;
             position: relative;
             cursor: pointer;
             transition: all 0.5s ease-in-out;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .envelope::before, .envelope::after {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 50px;
-            background: #d18e56;
+            width: 200px;
+            height: 100px;
+            background: #ffe5b4;
             transition: transform 0.5s ease-in-out;
         }
 
         .envelope::before {
-            top: 0;
-            transform-origin: top;
+            top: -50px;
+            left: 0;
+            border-radius: 10px 10px 0 0;
+            transform-origin: bottom;
             transform: rotateX(0deg);
         }
 
         .envelope::after {
-            bottom: 0;
-            transform-origin: bottom;
+            bottom: -50px;
+            left: 0;
+            border-radius: 0 0 10px 10px;
+            transform-origin: top;
             transform: rotateX(0deg);
         }
 
@@ -133,8 +139,6 @@
 
     <script>
         const envelope = document.getElementById('envelope');
-        const content = document.getElementById('content');
-
         envelope.addEventListener('click', () => {
             envelope.classList.toggle('open');
         });
