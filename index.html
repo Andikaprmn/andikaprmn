@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,43 +59,31 @@
             transform: rotateX(-180deg);
         }
 
-        .content {
+        .overlay {
             display: none;
-            position: absolute;
+            position: fixed;
             top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            color: #fff;
+            background: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
-            display: flex;
-            flex-direction: column;
-            animation: slideOut 0.5s forwards;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
 
-        .content img {
-            width: 300px; /* Gambar akan lebih besar */
-            height: auto;
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
         }
 
-        .footer {
-            margin-top: 20px;
-            font-size: 16px;
-        }
-
-        @keyframes slideOut {
-            from {
-                transform: translateX(-50%) translateY(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(-50%) translateY(-100%);
-                opacity: 0;
-            }
+        .bulan {
+            width: 150px;
+            margin-bottom: 20px;
         }
 
         @keyframes coverScreen {
@@ -112,62 +100,41 @@
 </head>
 <body>
     <div class="envelope" id="envelope">
-        <div class="content" id="content">
-            <img src="ucaa (1).jpg" alt="Selamat Berpuasa" class="logo">
-            <h1>Selamat Berpuasa</h1>
-            <p>
-                Dengan datangnya bulan suci Ramadhan, mari kita sambut dengan penuh kebahagiaan dan semangat. 
-                Semoga puasa kita diterima dan amal ibadah kita dilipatgandakan.
-                Selamat menunaikan ibadah puasa bagi yang menjalankannya!
-            </p>
-            <div class="footer">
-                <p>Ramadhan Kareem!</p>
-                <p>Andika Permana</p>
-            </div>
-        </div>
     </div>
 
-    <div class="overlay" id="overlay" style="display:none;">
-        <img src="ucaa (1).jpg" alt="Selamat Berpuasa" class="full-image">
+    <div class="overlay" id="overlay">
+        <div class="container">
+            <div class="header">
+                <img src="ucaa.jpg" alt="Bulan Ramadhan" class="bulan"> 
+                <h1>Selamat Berpuasa</h1>
+            </div>
+            <p>Dengan datangnya bulan suci Ramadhan, mari kita sambut dengan penuh kebahagiaan dan semangat. Semoga puasa kita diterima dan amal ibadah kita dilipatgandakan. Selamat menunaikan ibadah puasa bagi yang menjalankannya!</p>
+            <p><strong>Ramadhan Kareem!</strong></p>
+            <p><strong>Andika Permana</strong></p>
+        </div>
     </div>
 
     <script>
         const envelope = document.getElementById('envelope');
         const overlay = document.getElementById('overlay');
-        const content = document.getElementById('content');
 
         envelope.addEventListener('click', () => {
-            envelope.classList.toggle('open');
-            content.style.display = 'flex';
-
-            // Menampilkan overlay setelah amplop terbuka
-            setTimeout(() => {
+            if (envelope.classList.contains('open')) {
+                // Menutup amplop
+                envelope.classList.remove('open');
+                overlay.style.opacity = 0; // Menyembunyikan overlay
+                setTimeout(() => {
+                    overlay.style.display = 'none'; // Menghilangkan dari tampilan
+                }, 500); // Sesuaikan dengan durasi animasi
+            } else {
+                // Membuka amplop
+                envelope.classList.add('open');
                 overlay.style.display = 'flex';
-                overlay.style.animation = 'coverScreen 0.5s forwards';
-            }, 500);
+                setTimeout(() => {
+                    overlay.style.opacity = 1; // Menampilkan overlay
+                }, 500); // Menunggu hingga amplop terbuka
+            }
         });
     </script>
-    
-    <style>
-        .overlay {
-            display: flex;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .full-image {
-            width: 80%; /* Menutupi layar */
-            height: auto;
-            animation: coverScreen 0.5s forwards;
-        }
-    </style>
 </body>
 </html>
