@@ -96,6 +96,20 @@
             font-size: 18px;
         }
 
+        .header h1 {
+            animation: blink 1.5s infinite;
+            color: yellow; /* Warna kuning */
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+
         @keyframes coverScreen {
             from {
                 opacity: 0;
@@ -114,7 +128,7 @@
     <div class="overlay" id="overlay">
         <div class="container">
             <div class="header">
-                <img src="ucaa (1).jpg" alt="Bulan Ramadhan" class="bulan"> 
+                <img src="ucaa.jpg" alt="Bulan Ramadhan" class="bulan"> 
                 <h1>Selamat Berpuasa</h1>
             </div>
             <p>Dengan datangnya bulan suci Ramadhan, mari kita sambut dengan penuh kebahagiaan dan semangat. Semoga puasa kita diterima dan amal ibadah kita dilipatgandakan. Selamat menunaikan ibadah puasa bagi yang menjalankannya!</p>
