@@ -3,37 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Berpuasa</title>
+    <title>Amplop Selamat Berpuasa</title>
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             background-color: #2c3e50;
-            background-image: url('image.png');
-            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             color: #fff;
-            text-align: center;
         }
-        .container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            margin: 0 auto;
+
+        .envelope {
+            width: 200px;
+            height: 100px;
+            background: #e0a96d;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .envelope::before, .envelope::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background: #d18e56;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .envelope::before {
+            top: 0;
+            transform-origin: top;
+            transform: rotateX(0deg);
+        }
+
+        .envelope::after {
+            bottom: 0;
+            transform-origin: bottom;
+            transform: rotateX(0deg);
+        }
+
+        .envelope.open::before {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope.open .content {
+            display: block;
+            animation: slideDown 0.5s forwards;
+        }
+
+        .content {
+            display: none;
+            position: absolute;
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
             width: 90%;
             max-width: 600px;
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
         }
-        .logo {
-            margin-top: 20px;
+
+        .content img {
             width: 100px;
             height: auto;
+            margin-top: 20px;
         }
-        h1 {
+
+        .content h1 {
             margin: 20px 0;
             font-size: 36px;
             color: yellow;
-            animation: blink 1.5s infinite; 
+            animation: blink 1.5s infinite;
         }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        @keyframes slideDown {
+            from {
+                top: -300px;
+            }
+            to {
+                top: 120px;
+            }
+        }
+
         @keyframes blink {
             0%, 50%, 100% {
                 opacity: 1;
@@ -42,29 +112,32 @@
                 opacity: 0;
             }
         }
-        p {
-            font-size: 18px;
-            line-height: 1.6;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 16px;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="ucaa (1).jpg" alt="Logo" class="logo"> 
-        <h1>Selamat Berpuasa</h1>
-        <p>
-            Dengan datangnya bulan suci Ramadhan, mari kita sambut dengan penuh kebahagiaan dan semangat. 
-            Semoga puasa kita diterima dan amal ibadah kita dilipatgandakan.
-            Selamat menunaikan ibadah puasa bagi yang menjalankannya!
-        </p>
-        <div class="footer">
-            <p>Ramadhan Kareem!</p>
-            <p>Andika Permana</p>
+    <div class="envelope" id="envelope">
+        <div class="content" id="content">
+            <img src="ucaa (1).jpg" alt="Logo" class="logo">
+            <h1>Selamat Berpuasa</h1>
+            <p>
+                Dengan datangnya bulan suci Ramadhan, mari kita sambut dengan penuh kebahagiaan dan semangat. 
+                Semoga puasa kita diterima dan amal ibadah kita dilipatgandakan.
+                Selamat menunaikan ibadah puasa bagi yang menjalankannya!
+            </p>
+            <div class="footer">
+                <p>Ramadhan Kareem!</p>
+                <p>Andika Permana</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const content = document.getElementById('content');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
