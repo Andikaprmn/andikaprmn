@@ -16,6 +16,7 @@
             height: 100vh;
             color: #333;
             overflow: hidden; /* Prevent scroll */
+            flex-direction: column; /* Vertical layout */
         }
 
         .envelope {
@@ -28,6 +29,7 @@
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             overflow: hidden;
+            margin-bottom: 20px; /* Space for "Tutup" text */
         }
 
         .envelope::before, .envelope::after {
@@ -86,6 +88,14 @@
             margin-bottom: 20px;
         }
 
+        .tutup {
+            margin-top: 10px;
+            color: #ffffff;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
         @keyframes coverScreen {
             from {
                 opacity: 0;
@@ -99,34 +109,28 @@
     </style>
 </head>
 <body>
-    <div class="envelope" id="envelope">
-    </div>
+    <div class="envelope" id="envelope"></div>
 
     <div class="overlay" id="overlay">
         <div class="container">
             <div class="header">
-                <img src="ucaa.jpg" alt="Bulan Ramadhan" class="bulan"> 
+                <img src="ucaa (1).jpg" alt="Bulan Ramadhan" class="bulan"> 
                 <h1>Selamat Berpuasa</h1>
             </div>
             <p>Dengan datangnya bulan suci Ramadhan, mari kita sambut dengan penuh kebahagiaan dan semangat. Semoga puasa kita diterima dan amal ibadah kita dilipatgandakan. Selamat menunaikan ibadah puasa bagi yang menjalankannya!</p>
             <p><strong>Ramadhan Kareem!</strong></p>
             <p><strong>Andika Permana</strong></p>
+            <div class="tutup" id="closeButton">Tutup</div>
         </div>
     </div>
 
     <script>
         const envelope = document.getElementById('envelope');
         const overlay = document.getElementById('overlay');
+        const closeButton = document.getElementById('closeButton');
 
         envelope.addEventListener('click', () => {
-            if (envelope.classList.contains('open')) {
-                // Menutup amplop
-                envelope.classList.remove('open');
-                overlay.style.opacity = 0; // Menyembunyikan overlay
-                setTimeout(() => {
-                    overlay.style.display = 'none'; // Menghilangkan dari tampilan
-                }, 500); // Sesuaikan dengan durasi animasi
-            } else {
+            if (!envelope.classList.contains('open')) {
                 // Membuka amplop
                 envelope.classList.add('open');
                 overlay.style.display = 'flex';
@@ -134,6 +138,15 @@
                     overlay.style.opacity = 1; // Menampilkan overlay
                 }, 500); // Menunggu hingga amplop terbuka
             }
+        });
+
+        closeButton.addEventListener('click', () => {
+            // Menutup amplop
+            envelope.classList.remove('open');
+            overlay.style.opacity = 0; // Menyembunyikan overlay
+            setTimeout(() => {
+                overlay.style.display = 'none'; // Menghilangkan dari tampilan
+            }, 500); // Sesuaikan dengan durasi animasi
         });
     </script>
 </body>
