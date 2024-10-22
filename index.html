@@ -15,21 +15,22 @@
             align-items: center;
             height: 100vh;
             color: #333;
-            overflow: hidden;
-            flex-direction: column;
+            overflow: hidden; /* Prevent scroll */
+            flex-direction: column; /* Vertical layout */
         }
 
         .envelope {
-            width: 300px;
-            height: 200px;
-            background: url('images__5_-removebg-preview.png') no-repeat center center;
-            background-size: contain;
+            width: 200px;
+            height: 130px;
+            background: url('path-to-your-envelope-image.png') no-repeat center center; /* Ganti dengan path gambar Anda */
+            background-size: cover;
             position: relative;
             cursor: pointer;
             transition: all 0.5s ease-in-out;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
-            margin-bottom: 20px;
+            overflow: hidden;
+            margin-bottom: 20px; /* Space for "Tutup" text */
         }
 
         .overlay {
@@ -68,15 +69,15 @@
         }
 
         .header h1 {
-            animation: blink 1.5s infinite;
+            animation: blink 1.5s infinite; /* Ganti animasi */
         }
 
         @keyframes blink {
             0%, 100% {
-                color: yellow;
+                color: yellow; /* Warna kuning */
             }
             50% {
-                color: white;
+                color: white; /* Warna putih */
             }
         }
     </style>
