@@ -15,51 +15,21 @@
             align-items: center;
             height: 100vh;
             color: #333;
-            overflow: hidden; /* Prevent scroll */
-            flex-direction: column; /* Vertical layout */
+            overflow: hidden;
+            flex-direction: column;
         }
 
         .envelope {
-    width: 200px;
-    height: 130px;
-    background: url('images (5).jpeg') no-repeat center center;
-    background-size: cover;
-    position: relative;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 20px; /* Space for "Tutup" text */
-     }
-
-        .envelope::before, .envelope::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 100px;
-            background: #ffe5b4;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .envelope::before {
-            top: -50px;
-            left: 0;
-            border-radius: 10px 10px 0 0;
-            transform-origin: bottom;
-            transform: rotateX(0deg);
-        }
-
-        .envelope::after {
-            bottom: -50px;
-            left: 0;
-            border-radius: 0 0 10px 10px;
-            transform-origin: top;
-            transform: rotateX(0deg);
-        }
-
-        .envelope.open::before {
-            transform: rotateX(-180deg);
+            width: 300px;
+            height: 200px;
+            background: url('amplop-baru.png') no-repeat center center;
+            background-size: contain;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .overlay {
@@ -98,26 +68,15 @@
         }
 
         .header h1 {
-            animation: blink 1.5s infinite; /* Ganti animasi */
+            animation: blink 1.5s infinite;
         }
 
         @keyframes blink {
             0%, 100% {
-                color: yellow; /* Warna kuning */
+                color: yellow;
             }
             50% {
-                color: white; /* Warna putih */
-            }
-        }
-
-        @keyframes coverScreen {
-            from {
-                opacity: 0;
-                transform: scale(0);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
+                color: white;
             }
         }
     </style>
@@ -145,22 +104,20 @@
 
         envelope.addEventListener('click', () => {
             if (!envelope.classList.contains('open')) {
-                // Membuka amplop
                 envelope.classList.add('open');
                 overlay.style.display = 'flex';
                 setTimeout(() => {
-                    overlay.style.opacity = 1; // Menampilkan overlay
-                }, 500); // Menunggu hingga amplop terbuka
+                    overlay.style.opacity = 1;
+                }, 500);
             }
         });
 
         closeButton.addEventListener('click', () => {
-            // Menutup amplop
             envelope.classList.remove('open');
-            overlay.style.opacity = 0; // Menyembunyikan overlay
+            overlay.style.opacity = 0;
             setTimeout(() => {
-                overlay.style.display = 'none'; // Menghilangkan dari tampilan
-            }, 500); // Sesuaikan dengan durasi animasi
+                overlay.style.display = 'none';
+            }, 500);
         });
     </script>
 </body>
